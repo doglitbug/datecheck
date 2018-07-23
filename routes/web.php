@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('items/all', 'ItemController@all');
 Route::resource('items', 'ItemController');

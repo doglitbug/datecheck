@@ -51,6 +51,18 @@ class ItemController extends Controller
     }
 
     /**
+     * Display all items
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        $items=Item::all();
+        return view('items.all', array('items'=>$items));
+    }
+
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

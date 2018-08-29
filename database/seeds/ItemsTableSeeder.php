@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Category;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -18,10 +19,12 @@ class ItemsTableSeeder extends Seeder
         	[
         	'name' => 'Illicit Soft Drink Orange',
         	'barcode' => '9415359122289',
+            'category_id' => Category::where('name','=','Drinks')->first()->id,
         ],
         [
         	'name' => 'HB Peanut Butter 1kg',
         	'barcode' => '9414742037995',
+            'category_id' => Category::where('name','=','Breakfast')->first()->id,
         ]
         ]);
     }

@@ -10,6 +10,7 @@
 		<ul>
 			<li>Name: {{ $item->name }}</li>
 			<li>Barcode: {{ $item->barcode }}</li>
+			<li>Category: {{ $item->category->name }}</li>
 		</ul>
 		@endforeach
 	</body>

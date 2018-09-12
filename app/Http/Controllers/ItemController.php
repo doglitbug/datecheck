@@ -14,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items=Item::all();
+        return view('items.all', array('items'=>$items));
     }
 
     /**
@@ -49,18 +50,6 @@ class ItemController extends Controller
         $item=Item::findOrFail($id);
         return view('items.show', array('item'=>$item));
     }
-
-    /**
-     * Display all items
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function all()
-    {
-        $items=Item::all();
-        return view('items.all', array('items'=>$items));
-    }
-
 
     /**
      * Show the form for editing the specified resource.

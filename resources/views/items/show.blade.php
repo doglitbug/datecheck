@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Item {{ $item->id }}</title>
+		<title>{{ $item->name }}</title>
 	</head>
 	<body>
-		<h1>Item {{ $item->id }}</h1>
+		<h1>{{ $item->name }}</h1>
 		<ul>
-			<li>Name: {{ $item->name }}</li>
 			<li>Barcode: {{ $item->barcode }}</li>
+			<li>Category: {{ $item->category->name }}</li>
 		</ul>
 	</body>
 </html>

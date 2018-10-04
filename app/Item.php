@@ -11,4 +11,9 @@ class Item extends Model
     {
     	return $this->belongsTo('App\Category');
     }
+
+    //Item can have many Expiry dates
+    public function Expiry(){
+    	return $this->hasMany('App\Expiry');
+    }
 }

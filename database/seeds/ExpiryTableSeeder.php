@@ -12,6 +12,9 @@ class ExpiryTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //Grab all items
+        foreach(App\Item::all() as $item){
+        	$item->expiry()->create(['expiry_date'=>'2018-12-30']);
+        }
     }
 }

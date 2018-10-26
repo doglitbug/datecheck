@@ -22,7 +22,7 @@ class CategoryTableSeeder extends Seeder
     			'name' => 'Snacks',
     		],
     		[
-    			'name'=>'Breakfast',
+    			'name' => 'Breakfast',
     		]
     	]);
     }

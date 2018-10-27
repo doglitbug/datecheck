@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Category;
 
 class ItemController extends Controller
 {
@@ -25,7 +26,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        //Get all categories for selector
+        $categories=Category::all();
+        return view('items.create', array('categories'=>$categories));
     }
 
     /**
@@ -37,6 +40,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //
+        echo "TODO Validate and save new item";
     }
 
     /**

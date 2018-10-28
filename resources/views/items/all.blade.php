@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout')
 
 @section('pageTitle', 'All Items')
 

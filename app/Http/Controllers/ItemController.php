@@ -39,8 +39,14 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        echo "TODO Validate and save new item";
+        //Validate the new item
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'barcode' => 'required|unique:items,barcode|max:255',
+            'category' => 'required'
+
+        ]);
+        echo "TODO Validate and save: ";
     }
 
     /**

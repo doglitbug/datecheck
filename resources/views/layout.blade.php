@@ -21,7 +21,9 @@
 				<!-- Nav bar contents -->
 			</nav>
 		</div>
-
+		<!-- Display Validation Errors -->
+        @include('errors')
+        
 		@yield('content')
 
 		<!-- JavaScripts -->

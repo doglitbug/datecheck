@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layout')
 
 @section('pageTitle', 'Add new item')
 
@@ -28,9 +28,10 @@
 			<!-- Item category -->
 			<label for="item-category" class="col-sm-3 control-label">Category</label>
 			<div class="col-sm-6">
-				<select id="item-category" class="form-control">
+				<select id="item-category" name="category" class="form-control">
+					<option value="" selected disabled hidden>Choose here</option>
 					@foreach($categories as $category)
-					<option>{{ $category->name }}</option>
+					<option value="{{ $category->id }}">{{ $category->name }}</option>
 					@endforeach
 				</select>
 			</div>

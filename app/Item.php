@@ -16,4 +16,10 @@ class Item extends Model
     public function expiry(){
     	return $this->hasMany('App\Expiry');
     }
+
+    //The attributes that are mass assignable
+    protected $fillable = ['name', 'barcode', 'category_id'];
+
+    //Remove timestamps as we aren't not using them
+    public $timestamps = false;
 }

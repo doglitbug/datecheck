@@ -28,11 +28,11 @@
 			<!-- Item category -->
 			<label for="item-category" class="col-sm-3 control-label">Category</label>
 			<div class="col-sm-6">
-				<select id="item-category" name="category" class="form-control">
+				<select id="item-category" name="category_id" class="form-control">
 					<option value="" disabled hidden>Choose here</option>
 					@foreach($categories as $category)
 					<option value="{{ $category->id }}"
-						@if(old('category')==$category->id) {{ 'selected' }} @endif
+						@if(old('category_id')==$category->id) {{ 'selected' }} @endif
 						>{{ $category->name }}</option>
 					@endforeach
 				</select>

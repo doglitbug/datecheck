@@ -43,10 +43,11 @@ class ItemController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'barcode' => 'required|unique:items,barcode|max:255',
-            'category' => 'required'
+            'category_id' => 'required'
 
         ]);
-        echo "TODO Validate and save: ";
+        //Create the new item and store
+        Item::create($request->all());
     }
 
     /**

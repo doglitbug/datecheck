@@ -12,18 +12,27 @@
 		<li>Expiry dates:
 			<ul>
 				@foreach($item->expiry->sortBy('expiry_date') as $expiry)
-				<li>{{ $expiry->expiry_date }}</li>
+				<li>{{ $expiry->expiry_date }}
+					<!-- Delete button -->
+					<form action="/expiry/{{ $expiry->id }}" method="POST">
+					{{ csrf_field() }}
+					{{ method_field('DELETE') }}
+
+        			<button type="submit" class="btn btn-danger">
+						<i class="fa fa-btn fa-trash"></i></button>
+    				</form>
+				</li>
 				@endforeach
 			</ul>
 		</li>
 	</ul>
 	<!-- Delete button -->
 	<form action="/items/{{ $item->id }}" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
+		{{ csrf_field() }}
+		{{ method_field('DELETE') }}
 
-            <button type="submit" class="btn btn-danger">
-            	<i class="fa fa-btn fa-trash"></i>Delete</button>
-        </form>
+        <button type="submit" class="btn btn-danger">
+			<i class="fa fa-btn fa-trash"></i>Delete</button>
+    </form>
 </div>
 @endsection

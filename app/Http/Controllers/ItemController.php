@@ -96,7 +96,9 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
+        //Find item
         $item = Item::findOrFail($id);
+        
         $item->delete();
 
         return redirect('/items');

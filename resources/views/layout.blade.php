@@ -17,9 +17,8 @@
 
 	<body>
 		<div class="container">
-			<nav class="navbar navbar-default">
-				<!-- Nav bar contents -->
-			</nav>
+			
+			@include('navbar')
 		</div>
 		<!-- Display Validation Errors -->
         @include('errors')

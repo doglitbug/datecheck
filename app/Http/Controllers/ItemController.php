@@ -46,8 +46,11 @@ class ItemController extends Controller
             'category_id' => 'required'
 
         ]);
+
         //Create the new item and store
         Item::create($request->all());
+
+        return redirect('/items');
     }
 
     /**

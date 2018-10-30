@@ -46,6 +46,6 @@ class ExpiryController extends Controller
 
         $expiry->delete();
 
-        return redirect('/items/$item');
+        return view('items.show', array('item'=>$item));
     }
 }

@@ -12,7 +12,7 @@
 			<!-- Item name -->
 			<label for="item-name" class="col-sm-3 control-label">Name</label>
 			<div class="col-sm-6">
-				<input type="text" name="name" id="item-name" class="form-control">
+				<input type="text" name="name" value="{{old('name')}}" id="item-name" class="form-control">
 			</div>
 		</div>
 
@@ -20,7 +20,7 @@
 			<!-- Item barcode -->			
 			<label for="item-barcode" class="col-sm-3 control-label">Barcode</label>
 			<div class="col-sm-6">
-				<input type="text" name="barcode" id="item-barcode" class="form-control">
+				<input type="text" name="barcode" value ="{{old('barcode')}}" id="item-barcode" class="form-control">
 			</div>
 		</div>
 
@@ -29,9 +29,11 @@
 			<label for="item-category" class="col-sm-3 control-label">Category</label>
 			<div class="col-sm-6">
 				<select id="item-category" name="category" class="form-control">
-					<option value="" selected disabled hidden>Choose here</option>
+					<option value="" disabled hidden>Choose here</option>
 					@foreach($categories as $category)
-					<option value="{{ $category->id }}">{{ $category->name }}</option>
+					<option value="{{ $category->id }}"
+						@if(old('category')==$category->id) {{ 'selected' }} @endif
+						>{{ $category->name }}</option>
 					@endforeach
 				</select>
 			</div>

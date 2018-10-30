@@ -61,7 +61,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item=Item::findOrFail($id);
+        $item = Item::findOrFail($id);
         return view('items.show', array('item'=>$item));
     }
 
@@ -96,6 +96,9 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect('/items');
     }
 }

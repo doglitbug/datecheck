@@ -14,7 +14,7 @@ class CreateExpiryTable extends Migration
     public function up()
     {
         Schema::create('expiry', function (Blueprint $table) {
-            $table->integer('item_id')->index();
+            $table->integer('item_id')->unsigned();
             $table->date('expiry_date');
         });
     }

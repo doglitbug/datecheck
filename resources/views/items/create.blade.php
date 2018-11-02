@@ -4,9 +4,12 @@
 
 @section('content')
 
-<div class="panel-body">
-	<h1>Add new item</h1>
-	<form action="/items" method="POST" class="form-horizontal">
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Add new item</h3>
+	</div>
+	<div class="panel-body">
+		<form action="/items" method="POST" class="form-horizontal">
 		{{ csrf_field() }}
 		<div class="form-group">
 			<!-- Item name -->
@@ -38,7 +41,7 @@
 				</select>
 			</div>
 		</div>
-
+	
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-6">
 				<button type="submit" class="btn btn-default">
@@ -46,7 +49,7 @@
 				</button>
 			</div>
 		</div>
-	</form>
-
+		</form>
+	</div>
 </div>
 @endsection

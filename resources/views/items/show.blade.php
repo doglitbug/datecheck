@@ -35,7 +35,7 @@
 				<div class="form-group">
 					<!-- Expiry date -->
 					<label for="expiry-date" class="control-label">New date</label>
-					<input type="text" name="expiry_date" id="expiry-date" class="form-control">
+					<input type="date" name="expiry_date" id="expiry-date" class="form-control">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-default">

@@ -12,12 +12,12 @@
 		<li>Expiry dates:
 			<ul>
 				@foreach($item->expiry->sortBy('expiry_date') as $expiry)
-				<li>{{ $expiry->expiry_date }}
+				<li>
 					<!-- Delete button -->
 					<form action="/expiry/{{ $expiry->id }}" method="POST">
 					{{ csrf_field() }}
 					{{ method_field('DELETE') }}
-
+					{{ $expiry->expiry_date }}
         			<button type="submit" class="btn btn-danger">
 						<i class="fa fa-btn fa-trash"></i></button>
     				</form>

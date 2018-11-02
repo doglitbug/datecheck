@@ -12,7 +12,7 @@ class Expiry extends Model
     }
 
     //The attributes that are mass assignable
-    protected $fillable = ['expiry_date'];
+    protected $fillable = ['expiry_date', 'item_id'];
 
     //Assign table name so we aren't looking for 'expiries' (not to be confused with expires)
     protected $table = "expiry";

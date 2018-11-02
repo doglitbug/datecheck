@@ -15,20 +15,17 @@ class ExpiryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
-        // //Validate the new item
-        // $this->validate($request, [
-        //     'name' => 'required|max:255',
-        //     'barcode' => 'required|unique:items,barcode|max:255',
-        //     'category_id' => 'required'
+	    //Validate the new expiry
+	    $this->validate($request, [
+	        'expiry_date' => 'required'
+	    ]);
 
-        // ]);
+	    //Create the new expiry, but do not duplicate!
+	    $expiry = Expiry::firstOrCreate(['item_id'=>$item->id, 'expiry_date'=>$request->expiry_date]);
 
-        // //Create the new item and store
-        // Item::create($request->all());
-
-        // return redirect('/items');
+	    return view('items.show', array('item'=>$item));
     }
 
     /**

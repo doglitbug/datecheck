@@ -21,3 +21,7 @@ Route::resource('items', 'ItemController');
 //Routes for Expiry Dates
 Route::post('/expiry/{item}', 'ExpiryController@store')->name('expiry.store');
 Route::delete('/expiry/{expiry}','ExpiryController@destroy')->name('expiry.destory');
+
+//Routes for Reports
+Route::get('reports/expired', 'ReportController@expired')->name('reports.expired');
+Route::get('reports/week', 'ReportController@week')->name('reports.week');

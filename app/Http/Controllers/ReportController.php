@@ -18,7 +18,7 @@ class ReportController extends Controller
      */
     public function expired(Request $request)
     {
-        //Grab required items within those dates TODO
+        //Grab required items within those dates
         $items = Item::whereHas('expiry', function ($query) {
                     $query->whereDate('expiry_date', '<=', Carbon::now());
                     })->with(['expiry' => function ($query) {
@@ -30,7 +30,7 @@ class ReportController extends Controller
         //return $start;
         $end   = Carbon::now();
 
-        return view('reports.expired', array('start'=>$start, 'end'=>$end, 'items'=>$items));
+        return view('reports.expired', array('pageTitle'=>"Expired items", 'start'=>$start, 'end'=>$end, 'items'=>$items));
     }
 
     /**
@@ -39,8 +39,20 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function week($id)
+    public function week()
     {
+        //Grab required items within those dates TODO
+        $items = Item::whereHas('expiry', function ($query) {
+                    $query->whereDate('expiry_date', '<=', Carbon::now()->addWeeks(1));
+                    })->with(['expiry' => function ($query) {
+                    $query->whereDate('expiry_date', '<=', Carbon::now()->addWeeks(1))->orderBy('expiry_date');
+                    }])->get();
 
+        //Calculate start and end date that we want
+        $start = Carbon::Parse(Expiry::all()->min('expiry_date'));
+        //return $start;
+        $end   = Carbon::now()->addWeeks(1);
+
+        return view('reports.expired', array('pageTitle'=>"Expiring within next week", 'start'=>$start, 'end'=>$end, 'items'=>$items));
     }
 }

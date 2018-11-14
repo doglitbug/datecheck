@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('pageTitle', 'Expired items')
+@section('pageTitle', $pageTitle)
 
 @section('content')
 

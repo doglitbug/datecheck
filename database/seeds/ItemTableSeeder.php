@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Category;
+use Faker\Generator;
 
 class ItemTableSeeder extends Seeder
 {
@@ -12,8 +13,17 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
-        
         //Add a few default items for testing
+
+        $faker = Faker\Factory::create('en_US');
+        foreach (range(1, 200) as $index){
+            DB::table('items')->insert([
+                'name' => $faker->Company,
+                'barcode' => $faker->ean13,
+                'category_id' => Category::inRandomOrder()->first()->id,
+            ]);
+        };
+
         //Not using a faker class, so that we have real items and barcodes for later testing
         DB::table('items')->insert([
         	[

@@ -46,15 +46,24 @@ class ReportController extends Controller
 	{
 		//Calculate start and end date that we want
 		$start = Carbon::now()->startOfWeek();
-		//Add 6 days as opposed to week, because addWeek returns 8 days
 		//Copy is used because using a method updates the object itself ($start==$end otherwise)
 		$end  = $start->copy()->addWeek(1);
 
-		//Using use ($end) to place variable within function scope
-		//Grabs all items with an expiry less than $end
-
-		$items = Item::whereHas('expiry', function ($query) use ($end){ $query->whereDate('expiry_date', '<', $end); })->with('expiry')->get();
+		$items = $this->getItems($start, $end);
 
 		return view('reports.expired', array('pageTitle'=>"Expiring this week", 'start'=>$start, 'end'=>$end, 'items'=>$items));
+	}
+
+	/**
+	 * Grab all items(and expiry dates) with expiry dates between given parameters
+	 */
+	private function getItems(Carbon $start, Carbon $end){
+		$items = Item::whereHas('expiry', function ($query) use ($start, $end){ $query
+			->whereDate('expiry_date', '>=', $start)
+			->whereDate('expiry_date', '<', $end)
+			;})
+			->with('expiry')->get();
+
+		return $items;
 	}
 }

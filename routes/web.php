@@ -18,6 +18,9 @@ Route::get('/', function () {
 //Routes for Items
 Route::resource('items', 'ItemController');
 
+//Route for search
+Route::get('search', 'ItemController@search')->name('search');
+
 //Routes for Expiry Dates
 Route::post('/expiry/{item}', 'ExpiryController@store')->name('expiry.store');
 Route::delete('/expiry/{item}','ExpiryController@destroy')->name('expiry.destory');

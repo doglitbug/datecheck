@@ -6,7 +6,7 @@
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Search Results for {{ $query }}</h3>
+		<h3 class="panel-title">Search Results for {{ $query }} ( {{ $items->total() }} result(s) found )</h3>
 	</div>
 	<div class="panel-body">
 		@if (count($items) > 0)

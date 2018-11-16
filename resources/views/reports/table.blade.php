@@ -1,6 +1,6 @@
 <h3>{{ $pageTitle }}</h3>
 
-<table class="table table-bordered table-bordered table-condensed">
+<table class="table table-bordered table-condensed">
 	<thead>
 		<tr>
 			<th>&nbsp;</th>

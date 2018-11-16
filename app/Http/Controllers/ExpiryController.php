@@ -13,6 +13,7 @@ class ExpiryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Item $item)
@@ -29,20 +30,23 @@ class ExpiryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the given date from the item
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Item $item)
     {
-        //Find expiry
-        $expiry = Expiry::findOrFail($id);
-        //Find parent
-        $item = $expiry->item;
+        //Find Expiry to delete. Use first other wise
+        $expiry = $item->expiry->where('expiry_date' , '=', $request->date)->first();
 
-        $expiry->delete();
+        if ($expiry != null) {
+            $expiry->delete();
+        }
 
-        return view('items.show', array('item'=>$item));
+        //Using redirect because view was still showing deleted item and browser url was showing wrong route
+        //Suspect browser caching?
+        return redirect()->route('items.show', ['item' => $item]);
     }
 }

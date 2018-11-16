@@ -17,9 +17,10 @@
 				@foreach($item->expiry->sortBy('expiry_date') as $expiry)
 					<li>
 						<!-- Delete button -->
-						<form action="/expiry/{{ $expiry->id }}" method="POST">
+						<form action="/expiry/{{ $item->id }}" method="POST">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
+							<input type="hidden" name="date" value="{{ $expiry->expiry_date }}">
 							{{ $expiry->expiry_date }}
 							<button type="submit" class="btn btn-danger">
 								<i class="fa fa-btn fa-trash"></i></button>

@@ -15,11 +15,15 @@
 			<tr>
 				<td><a href="{{ route('items.show', ['item' => $item->id]) }}">{{ $item->name }}</a></td>
 				@for($date = clone $start; $date<$end; $date->addDay())
-					<td>
 						@if ($item->expiry->contains('expiry_date', $date->format('Y-m-d')))
-							X
+							@if($date->isPast())
+								<td class="danger">X</td>
+							@else
+								<td class="success">X</td>
+							@endif
+						@else
+						<td>&nbsp;</td>
 						@endif
-					</td>
 				@endfor
 			</tr>
 		@endforeach

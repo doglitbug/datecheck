@@ -21,7 +21,7 @@
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 							<input type="hidden" name="date" value="{{ $expiry->expiry_date }}">
-							{{ $expiry->expiry_date }}
+							{{ date_format(date_create($expiry->expiry_date), "d/m/Y") }}
 							<button type="submit" class="btn btn-danger">
 								<i class="fa fa-btn fa-trash"></i></button>
     					</form>

@@ -24,4 +24,5 @@ Route::delete('/expiry/{expiry}','ExpiryController@destroy')->name('expiry.desto
 
 //Routes for Reports
 Route::get('reports/expired', 'ReportController@expired')->name('reports.expired');
+Route::get('reports/current', 'ReportController@current')->name('reports.current');
 Route::get('reports/week', 'ReportController@week')->name('reports.week');

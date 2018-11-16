@@ -26,18 +26,31 @@ class ReportController extends Controller
 		//Include today
 		$end   = Carbon::now();
 
-		//Grab required items within those dates
-		$items = Item::whereHas('expiry', function ($query) {
-					$query->whereDate('expiry_date', '<=', Carbon::now());
-					})->with(['expiry' => function ($query) {
-					$query->whereDate('expiry_date', '<=', Carbon::now())->orderBy('expiry_date');
-					}])->get();
+		$items = $this->getItems($start, $end);
 
 		return view('reports.expired', array('pageTitle'=>"Expired items", 'start'=>$start, 'end'=>$end, 'items'=>$items));
 	}
 
 	/**
-	 * Show all items due to expire in the current week
+	 * Show all items due to expire in the current week(starting Monday)
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function current(Request $request)
+	{
+		//Calculate start and end date that we want
+		$start = Carbon::now()->startOfWeek(Carbon::MONDAY);
+		//Copy is used because using a method updates the object itself ($start==$end otherwise)
+		$end  = $start->copy()->addWeek(1);
+
+		$items = $this->getItems($start, $end);
+
+		return view('reports.expired', array('pageTitle'=>"Expiring this week", 'start'=>$start, 'end'=>$end, 'items'=>$items));
+	}
+
+	/**
+	 * Show all items due to expire in the next week(7 days)
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
@@ -45,13 +58,13 @@ class ReportController extends Controller
 	public function week(Request $request)
 	{
 		//Calculate start and end date that we want
-		$start = Carbon::now()->startOfWeek();
+		$start = Carbon::now();
 		//Copy is used because using a method updates the object itself ($start==$end otherwise)
 		$end  = $start->copy()->addWeek(1);
 
 		$items = $this->getItems($start, $end);
 
-		return view('reports.expired', array('pageTitle'=>"Expiring this week", 'start'=>$start, 'end'=>$end, 'items'=>$items));
+		return view('reports.expired', array('pageTitle'=>"Expiring within next week", 'start'=>$start, 'end'=>$end, 'items'=>$items));
 	}
 
 	/**
@@ -63,7 +76,6 @@ class ReportController extends Controller
 			->whereDate('expiry_date', '<', $end)
 			;})
 			->with('expiry')->get();
-
 		return $items;
 	}
 }

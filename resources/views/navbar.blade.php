@@ -27,7 +27,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ route('reports.expired') }}">Expired items</a></li>
-            <li><a href="{{ route('reports.week') }}">Expires this week</a></li>
+            <li><a href="{{ route('reports.current') }}">Expires this week</a></li>
+            <li><a href="{{ route('reports.week') }}">Expires within next week</a></li>
           </ul>
         </li>
       </ul>

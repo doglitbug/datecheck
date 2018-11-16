@@ -35,7 +35,7 @@
 
       <form class="navbar-form navbar-left" action="{{ route('search') }}">
         <div class="form-group">
-          <input type="text" class="form-control" name="query" placeholder="Search">
+          <input type="text" class="form-control" name="query" placeholder="Search" required>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

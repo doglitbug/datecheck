@@ -116,7 +116,7 @@ class ItemController extends Controller
 
 		//Not searching on category(will require a orWhereHas join)
 		$items = Item::where('name', 'LIKE', '%'.$query.'%')
-					->orWhere('barcode', 'LIKE', '%'.$query.'%')->paginate(15);
+					->orWhere('barcode', 'LIKE', '%'.$query.'%')->orderBy('name')->paginate(15);
 		$items->appends(['query'=>$query]);
 		
 		return view('search', array('items'=>$items, 'query'=>$query));

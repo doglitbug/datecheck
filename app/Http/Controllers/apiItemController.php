@@ -27,7 +27,20 @@ class apiItemController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		//Validate the new item
+		//TODO Accept category as string and convert to cat_id?
+		//TODO Validation fail doesnt return error, fix
+		$this->validate($request, [
+			'name' => 'required|max:255',
+			'barcode' => 'required|unique:items,barcode|max:255',
+			'category_id' => 'required'
+		]);
+
+
+		//Create the new item and store
+		$item = Item::create($request->all());
+
+		return new ItemResource($item);
 	}
 
 	/**
@@ -42,25 +55,36 @@ class apiItemController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified item in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
+	 * @param  \App\Item $item
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $request, Item $item)
 	{
-		//
+
+		$this->validate($request, [
+			'name' => 'required|max:255',
+			'barcode' => "required|unique:items,barcode,$item->id,id|max:255",
+			'category_id' => 'required'
+		]);
+
+		$item->update($request->all());
+
+		return new ItemResource($item);
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified item from storage.
 	 *
-	 * @param  int  $id
+	 * @param  \App\Item $item
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function destroy(Item $item)
 	{
-		//
+		$item->delete();
+
+		return response()->json(null, 204);
 	}
 }

@@ -19,7 +19,7 @@ class ItemResource extends JsonResource
 			'name' => $this->name,
 			'barcode' => $this->barcode,
 			'category' =>$this->Category->name,
-			'expiry_dates' => $this->expiry_dates
+			'expiry' => $this->expiry
 		];
 	}
 }

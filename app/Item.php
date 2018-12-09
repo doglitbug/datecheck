@@ -14,7 +14,7 @@ class Item extends Model
 
     //Item can have many Expiry dates
     public function expiry(){
-    	return $this->hasMany('App\Expiry');
+    	return $this->hasMany('App\Expiry')->orderBy('expiry_date');
     }
 
     //The attributes that are mass assignable
